@@ -11,6 +11,7 @@ public class PuzzlePlayer : MonoBehaviour
     private Vector2 Movement = Vector2.zero;
     private Animator animator;
     private bool inLadder;
+     
 
     void Start()
     {
@@ -82,6 +83,14 @@ public class PuzzlePlayer : MonoBehaviour
             inLadder = false;
             rb.gravityScale = 1f;
             rb.freezeRotation = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("spike"))
+        {
+            Destroy(gameObject);
         }
     }
 
