@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< Updated upstream
-  - walltilemap
-  - bullet
-  - Enemy
-=======
-  - ground
-  - player
-  - fruits
-  - bomb
->>>>>>> Stashed changes
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -50,16 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background Sky
-    uniqueID: 1051160739
-    locked: 0
-  - name: Background Ground
-    uniqueID: 1868203409
-    locked: 0
-  - name: Player
-    uniqueID: 1480245009
-    locked: 0
-  - name: Fruits and Bomb
-    uniqueID: 3783306209
     locked: 0
