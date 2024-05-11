@@ -22,7 +22,7 @@ public class ScoreManager : MonoBehaviour
             puan += 10;
             UpdatePuan();
             //StartCoroutine(TextAnimation());
-            
+            Destroy(gameObject);
         }
         
     }
