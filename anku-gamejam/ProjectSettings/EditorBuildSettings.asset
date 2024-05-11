@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FruitDropScene.unity
+    guid: 2b248c0d55423444f9c8626a71802ee7
   m_configObjects: {}
