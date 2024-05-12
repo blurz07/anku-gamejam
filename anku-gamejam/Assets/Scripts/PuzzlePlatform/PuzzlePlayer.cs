@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PuzzlePlayer : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float MovementSpeed = 0.01f;
+    public float MovementSpeed2 = 1f;
     private Vector2 Movement = Vector2.zero;
     private Animator animator;
     private bool inLadder;
-<<<<<<< Updated upstream
     public float jumpForce = 2f;
     [SerializeField]private float maxHorizontalSpeed;
-=======
->>>>>>> Stashed changes
+    [SerializeField] private float maxVerticalSpeed;
+    private bool isGround;
+
 
 
     void Start()
@@ -51,14 +51,20 @@ public class PuzzlePlayer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (isGround)
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            }
+
         }
         if (inLadder)
         {
 
-
             Movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
+            transform.position = transform.position;
+            rb.velocity = new Vector3(0f,0f, 0f);
+            transform.position += new Vector3(Input.GetAxisRaw("Horizontal")*MovementSpeed2*Time.deltaTime, Input.GetAxisRaw("Vertical") * MovementSpeed2 * Time.deltaTime, 0f);
         }
         else
         {
@@ -74,17 +80,20 @@ public class PuzzlePlayer : MonoBehaviour
         {
             rb.velocity += Movement * MovementSpeed * Time.fixedDeltaTime;
         }
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxHorizontalSpeed, maxHorizontalSpeed),rb.velocity.y);
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(rb.velocity.y, -maxVerticalSpeed, maxVerticalSpeed));
         
 
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        
         if (collision.gameObject.CompareTag("Ladder"))
         {
             inLadder = true;
             rb.gravityScale = 0f;
+            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -98,11 +107,29 @@ public class PuzzlePlayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            animator.SetBool("isJump", false);
+        }
+        
         if (collision.gameObject.CompareTag("spike"))
         {
             Destroy(gameObject);
         }
     }
-
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isGround = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isGround = false;
+        }
+    }
 }
 

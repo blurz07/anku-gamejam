@@ -4,20 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ground
-  - bomb
-  - fruits
-  - player
-  - walltilemap
-  - bullet
-  - Enemy
+  - Box
   - Ladder
   - spike
-<<<<<<< Updated upstream
-  - Box
-=======
-  - point
->>>>>>> Stashed changes
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -28,7 +18,7 @@ TagManager:
   - 
   - 
   - 
-  - duvar
+  - 
   - 
   - 
   - 
@@ -54,7 +44,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: player
-    uniqueID: 3799103919
     locked: 0
