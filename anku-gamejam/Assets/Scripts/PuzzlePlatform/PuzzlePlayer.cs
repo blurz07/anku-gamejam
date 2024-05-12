@@ -11,8 +11,11 @@ public class PuzzlePlayer : MonoBehaviour
     private Vector2 Movement = Vector2.zero;
     private Animator animator;
     private bool inLadder;
+<<<<<<< Updated upstream
     public float jumpForce = 2f;
     [SerializeField]private float maxHorizontalSpeed;
+=======
+>>>>>>> Stashed changes
 
 
     void Start()
@@ -20,7 +23,6 @@ public class PuzzlePlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
-
     // Update is called once per frame
     void Update()
     {

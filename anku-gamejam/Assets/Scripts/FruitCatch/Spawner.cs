@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
 
         int randomFruit = Random.Range(0, fruits.Length);
 
-        if(Random.value <= .7f)
+        if(Random.value <= .6f)
             Instantiate(fruits[randomFruit], new Vector2(Random.Range(-xBounds, xBounds), yBound), Quaternion.identity);
         else
             Instantiate(bomb, new Vector2(Random.Range(-xBounds, xBounds), yBound), Quaternion.identity);

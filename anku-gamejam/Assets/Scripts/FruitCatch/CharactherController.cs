@@ -10,6 +10,7 @@ public class CharactherController : MonoBehaviour
     //private Animator _animator;
     private Vector3 characterPos;
     public Canvas canvas;
+    public AudioSource audioSource;
 
     
     void Start()
@@ -47,6 +48,7 @@ public class CharactherController : MonoBehaviour
             Destroy(gameObject);
             Time.timeScale = 0;
             canvas.gameObject.SetActive(true);
+            audioSource.Play();
         }
     }
 }

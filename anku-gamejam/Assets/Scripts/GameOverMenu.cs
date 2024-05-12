@@ -8,11 +8,13 @@ public class GameOverMenu : MonoBehaviour
 {
     private Button button;
     public Canvas canvas;
+    public AudioSource audioSource;
 
     public void Start()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(RestartGame);
+        audioSource.Play();
     }
 
     public void RestartGame()

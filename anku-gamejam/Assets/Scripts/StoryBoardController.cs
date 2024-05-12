@@ -9,6 +9,7 @@ public class StoryBoardController : MonoBehaviour
     public Image[] comicPages;
     public Button startButton;
     public Button continueButton;
+    public AudioSource audioSource;
 
     private int currentPageIndex = 0;
 
@@ -27,17 +28,19 @@ public class StoryBoardController : MonoBehaviour
 
     void StartComic()
     {
-
+        audioSource.Play();
         startButton.gameObject.SetActive(false);
         comicPages[currentPageIndex].gameObject.SetActive(false);
         currentPageIndex++;
         comicPages[currentPageIndex].gameObject.SetActive(true);
+        
 
         continueButton.gameObject.SetActive(true);
     }
 
     void ShowNextPage()
     {
+        audioSource.Play();
         // Mevcut sayfanýn görünürlüðünü kapat
         comicPages[currentPageIndex].gameObject.SetActive(false);
 
@@ -47,7 +50,7 @@ public class StoryBoardController : MonoBehaviour
         {
             comicPages[currentPageIndex].gameObject.SetActive(true);
         }
-        else if (currentPageIndex == 8)
+        else if (currentPageIndex == 3)
         {
             continueButton.gameObject.SetActive(false);
             SceneManager.LoadScene(sceneBuildIndex: 1);

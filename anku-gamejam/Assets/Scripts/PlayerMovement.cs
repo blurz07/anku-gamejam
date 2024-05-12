@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 Movement = Vector2.zero;
     private bool skill;
     private Animator animator;
+    public Canvas canvas;
     
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -16,10 +19,12 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("bullet"))
         {
             Destroy(gameObject);
+            canvas.gameObject.SetActive(true);
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
+            canvas.gameObject.SetActive(true);
         }
     }
 

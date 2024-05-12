@@ -13,7 +13,11 @@ TagManager:
   - Enemy
   - Ladder
   - spike
+<<<<<<< Updated upstream
   - Box
+=======
+  - point
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - duvar
   - 
   - 
   - 

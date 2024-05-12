@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Collision : MonoBehaviour
 {
     public Text scoreText;
     private int puan = 0;
-    
+    public AudioSource audioSource;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
             if (collision.gameObject.CompareTag("fruits"))
@@ -16,6 +18,7 @@ public class Collision : MonoBehaviour
                 Destroy(collision.gameObject);
                 puan += 10;
                 checkScore();
+                audioSource.Play();
             }      
     }
 
@@ -24,11 +27,11 @@ public class Collision : MonoBehaviour
         scoreText.text = puan.ToString();
     }
 
-    private void checkScore()
+    public void checkScore()
     {
         if (puan >= 100)
         {
-            Debug.Log("you won");
+            SceneManager.LoadScene(2);
         }
     }
 

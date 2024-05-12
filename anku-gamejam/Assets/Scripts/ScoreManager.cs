@@ -2,27 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Text score;
+    public TextMeshProUGUI score;
     private int puan = 0;
-    //public Transform animasyonSpawnPoint;
-    //public Text animasyonText;
-    //private Rigidbody2D animasyonrb;
-
-    private void Start()
-    {
-        //Rigidbody2D animasyonrb = animasyonText.GetComponent<Rigidbody2D>();
-    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("point"))
         {
             puan += 10;
             UpdatePuan();
-            //StartCoroutine(TextAnimation());
-            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
         
     }
@@ -33,12 +27,11 @@ public class ScoreManager : MonoBehaviour
     void UpdatePuan()
     {
         score.text = puan.ToString();
+        if (puan >= 70)
+        {
+            SceneManager.LoadScene(4);
+        }
     }
-    /*IEnumerator TextAnimation()
-    {
-        Instantiate(animasyonText, animasyonSpawnPoint.position, animasyonSpawnPoint.rotation);
-        animasyonText.SetParent(animasyonSpawnPoint, false);
-        yield return new WaitForSeconds(10f);
-        
-    }*/
+
+    
 }
