@@ -15,6 +15,7 @@ public class PuzzlePlayer : MonoBehaviour
     [SerializeField]private float maxHorizontalSpeed;
     [SerializeField] private float maxVerticalSpeed;
     private bool isGround;
+    public GameObject GameOver;
 
 
 
@@ -103,6 +104,10 @@ public class PuzzlePlayer : MonoBehaviour
             inLadder = false;
             rb.gravityScale = 0.5f;
         }
+        if (collision.gameObject.CompareTag("Bg"))
+        {
+            GameOver.gameObject.SetActive(true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -115,6 +120,7 @@ public class PuzzlePlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("spike"))
         {
             Destroy(gameObject);
+            GameOver.gameObject.SetActive(true);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
