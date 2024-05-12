@@ -6,6 +6,7 @@ public class BridgeButton : MonoBehaviour
 {
     public bool isPress;
     private Animator animator;
+    [SerializeField] private buttonsliding buttonsliding;
 
     private void Start()
     {
@@ -13,11 +14,18 @@ public class BridgeButton : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isPress = true;
+        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box"))
+        {
+            isPress = true;
+            buttonsliding.ToggleBridge(true);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isPress = false;
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Box")){ 
+            isPress = false;
+            buttonsliding.ToggleBridge(false);
+        }
     }
 
     private void Update()

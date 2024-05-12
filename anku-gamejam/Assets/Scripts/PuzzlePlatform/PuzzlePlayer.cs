@@ -7,11 +7,13 @@ using UnityEngine;
 public class PuzzlePlayer : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float MovementSpeed = 45f;
+    public float MovementSpeed = 0.01f;
     private Vector2 Movement = Vector2.zero;
     private Animator animator;
     private bool inLadder;
-     
+    public float jumpForce = 2f;
+    [SerializeField]private float maxHorizontalSpeed;
+
 
     void Start()
     {
@@ -44,27 +46,35 @@ public class PuzzlePlayer : MonoBehaviour
         {
             animator.SetBool("isMoving", true);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
         if (inLadder)
         {
 
-            
-            Movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+            Movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         }
         else
         {
-            Movement = new Vector2(Input.GetAxis("Horizontal"), 0f);
+            Movement = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
         }
-
-        
         animator.SetFloat("speed", Movement.x);
-
+       
     }
 
     private void FixedUpdate()
     {
+        if(rb.velocity.x < 2f && rb.velocity.x > -2f)
+        {
+            rb.velocity += Movement * MovementSpeed * Time.fixedDeltaTime;
+        }
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxHorizontalSpeed, maxHorizontalSpeed),rb.velocity.y);
+        
 
-        rb.velocity = Movement * MovementSpeed * Time.fixedDeltaTime;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -73,7 +83,6 @@ public class PuzzlePlayer : MonoBehaviour
         {
             inLadder = true;
             rb.gravityScale = 0f;
-            rb.freezeRotation = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -81,8 +90,7 @@ public class PuzzlePlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Ladder"))
         {
             inLadder = false;
-            rb.gravityScale = 1f;
-            rb.freezeRotation = false;
+            rb.gravityScale = 0.5f;
         }
     }
 

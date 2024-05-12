@@ -13,7 +13,20 @@ public class buttonsliding : MonoBehaviour
 
     private void Update()
     {
-        if (button.isPress)
+        //if (button.isPress)
+        //{
+        //    transform.DOMove(target.position, platformSpeed);
+        //}
+        //else
+        //{
+        //    transform.DOMove(backtarget.position, platformSpeed);
+        //}
+
+
+    }
+    public void ToggleBridge(bool isOpen)
+    {
+        if (isOpen)
         {
             transform.DOMove(target.position, platformSpeed);
         }
@@ -21,11 +34,8 @@ public class buttonsliding : MonoBehaviour
         {
             transform.DOMove(backtarget.position, platformSpeed);
         }
-
-
     }
 
-    
-        
-    
+
+
 }
