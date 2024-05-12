@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StoryBoard3.unity
     guid: b04f4883b5735a34bb7e27d81beb63e5
+  - enabled: 1
+    path: Assets/Scenes/PlatformPuzzleScene.unity
+    guid: 03f230c19c6fcbd4284fa02b96ae9676
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: a6ec97267713db740a35d18551ee2fdb
   m_configObjects: {}
